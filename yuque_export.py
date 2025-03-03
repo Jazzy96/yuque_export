@@ -228,7 +228,7 @@ def create_obsidian_config(base_dir, assets_dir_name):
     
     print(bold(green(f"已创建Obsidian配置，附件目录设置为: {assets_dir_name}")))
 
-def main(assets_dir_name="_assets"):
+def main(assets_dir_name="attachments"):
     # 获取用户ID
     user = yuque.user.get()
     user_id = user['data']['id']
@@ -379,24 +379,12 @@ if __name__ == '__main__':
         print(red("错误: 未找到 YUQUE_TOKEN 环境变量。请确保 .env 文件中设置了 YUQUE_TOKEN。"))
         sys.exit(1)
     yuque = Yuque(token)
-    base_dir = os.path.expanduser("~/Documents/Obsidian Vault")
     
-    # 资源目录配置
-    print(bold(cyan("资源目录配置：")))
-    print(yellow("1. _assets (默认，在Obsidian中可见但被标记为附件)"))
-    print(yellow("2. .assets (在Obsidian中隐藏，但可能无法识别图片)"))
-    print(yellow("3. assets (在Obsidian中完全可见)"))
-    print(yellow("4. attachments (Obsidian推荐的附件目录名)"))
-    assets_dir_choice = input(lcyan("请选择资源目录类型 [1-4，默认1]: ") or "1")
+    # 从环境变量获取导出路径，如果未设置则使用默认值
+    base_dir = os.path.expanduser(os.getenv('EXPORT_PATH', '~/Documents/Obsidian Vault'))
     
-    # 设置资源目录名称
-    assets_dir_names = {
-        "1": "_assets",
-        "2": ".assets",
-        "3": "assets",
-        "4": "attachments"
-    }
-    assets_dir_name = assets_dir_names.get(assets_dir_choice, "_assets")
+    # 使用固定的attachments目录
+    assets_dir_name = "attachments"
     print(green(f"将使用 {assets_dir_name} 作为资源目录名称"))
     
     main(assets_dir_name)
