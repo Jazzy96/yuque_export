@@ -8,7 +8,7 @@
 - 保持原有目录结构
 - 自动下载并本地化图片和附件
 - 支持 Obsidian 配置生成
-- 灵活的资源目录配置选项
+- 使用 Obsidian 推荐的 attachments 目录
 - 友好的命令行交互界面
 
 ## 安装
@@ -55,18 +55,12 @@ python yuque_export.py
    - 输入 `all` 导出所有知识库
    - 直接输入知识库 ID
 
-3. 选择资源目录配置：
-   - `_assets`（默认，在 Obsidian 中可见但被标记为附件）
-   - `.assets`（在 Obsidian 中隐藏）
-   - `assets`（在 Obsidian 中完全可见）
-   - `attachments`（Obsidian 推荐的附件目录名）
-
 ## 输出
 
 - 导出到 `EXPORT_PATH` 指定的目录（默认为 `~/Documents/Obsidian Vault`）
 - 每个知识库创建独立文件夹
 - 保持原有目录结构
-- 图片和附件统一存放在资源目录
+- 图片和附件统一存放在 attachments 目录
 
 ## 依赖
 
