@@ -9,6 +9,10 @@ from huepy import *
 from prettytable import PrettyTable
 import hashlib  # 添加引入用于生成唯一文件名
 import json
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
@@ -370,7 +374,10 @@ def main(assets_dir_name="_assets"):
             create_obsidian_config(base_dir, assets_dir_name)
 
 if __name__ == '__main__':
-    token = "QADjeBIVabaRlvwcJtOMq3Pn39Ob49DEL53SmgAm"
+    token = os.getenv('YUQUE_TOKEN')
+    if not token:
+        print(red("错误: 未找到 YUQUE_TOKEN 环境变量。请确保 .env 文件中设置了 YUQUE_TOKEN。"))
+        sys.exit(1)
     yuque = Yuque(token)
     base_dir = os.path.expanduser("~/Documents/Obsidian Vault")
     

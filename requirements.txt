@@ -1,0 +1,5 @@
+pyuque
+requests
+huepy
+prettytable
+python-dotenv 
